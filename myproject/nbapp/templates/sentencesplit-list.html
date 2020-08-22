@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Sentencesplit {% endblock %}
+
+{% block content %}
+
+<div>
+    <a href="{% url 'home' %}" class="btn btn-primary my-2">Back to Home</a>
+    <a href="{% url 'emiten-list' %}" class="btn btn-primary my-2">Go To Emiten List</a>
+    <h2 align="center">Sentencesplit List</h2>
+</div>
+<div>
+    <form method="get">
+        {{ sentencesplit_filter.form.as_p }}
+        <button class="btn btn-primary my-2" type="submit">Search</button>
+    </form>
+</div>
+
+<div class="pagination" style="align-content: center;">
+        <span class="step-links" >
+            {% if sentencesplit_filter_qs.has_previous %}
+            <a href="?page=1&emiten={{sentencesplit_filter.form.emiten.value}}"> &laquo; first </a>
+            <a href="?page={{ sentencesplit_filter_qs.previous_page_number }}&emiten={{sentencesplit_filter.form.emiten.value}}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ sentencesplit_filter_qs.number }} of {{ sentencesplit_filter_qs.paginator.num_pages }} pages
+            </span>
+    
+            {% if sentencesplit_filter_qs.has_next %}
+            <a href="?page={{ sentencesplit_filter_qs.next_page_number}}&emiten={{sentencesplit_filter.form.emiten.value}}">next</a>
+            <a href="?page={{ sentencesplit_filter_qs.paginator.num_pages }}&emiten={{sentencesplit_filter.form.emiten.value}}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+<div>
+    <table class="table" id="sentencesplitTable">
+        <thead>
+            <tr>
+                <th scope="col">Sentence</th>
+                <th scope="col">Emiten Code</th>
+                <th scope="col">Emiten Name</th>
+                <th scope="col">Label</th>
+                <th scope="col">Label Description</th>
+            </tr>
+        </thead>
+        {% for sentencesplit in sentencesplit_filter_qs %}
+        <tbody>
+            <tr>
+                <td>{{sentencesplit.sentence}}</td>
+                <td>{{sentencesplit.emiten.emiten_code}}</td>
+                <td>{{sentencesplit.emiten.emiten_name}}</td>
+                <td>{{sentencesplit.label}}</td>
+                {% ifequal "1" sentencesplit.label %}
+                    <td>POSITIVE</td>
+                {% endifequal %}
+                {% ifequal "0" sentencesplit.label %}
+                    <td>NEGATIVE</td>
+                {% endifequal %}
+                {% ifequal "2" sentencesplit.label %}
+                    <td>NEUTRAL</td>
+                {% endifequal %}
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+
+
+<div>
+    <a href="{% url 'home' %}" class="btn btn-primary my-2">Back to Home</a>
+    <a href="{% url 'emiten-list' %}" class="btn btn-primary my-2">Go To Emiten List</a>
+</div>
+
+{% endblock %}

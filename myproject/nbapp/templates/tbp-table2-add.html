@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Add News Data {% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2>Add News Data</h2>
+    <form method="POST" class="post-form" action="/tbp-table2-add/">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Title</label>
+            <input class="form-control" type="text" name="title" id="id_title" value="{{tbp_table2.title}}">
+        </div>
+        <div class="form-group">
+            <label>Source</label>
+            <input class="form-control" type="text" name="source" id="id_source" value="{{tbp_table2.source}}">
+        </div>
+        <div class="form-group">
+            <label>Paragraph</label>
+            <textarea class="form-control" rows="6" name="paragraph" id="id_paragraph" value="{{tbp_table2.paragraph}}"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Date</label>
+            <input class="form-control" type="text" name="source" id="id_date" value="{{tbp_table2.date}}">
+            <!--<input class="form-control" type="text" name="source" id="datepicker" value="{{tbp_table2.date}}">-->
+        </div>
+        
+       
+        <div class="form-group">
+            <label>Emiten</label>
+            <div class="input-group mb-3">
+                <select class="custom-select" id="inputGroupSelect02">
+                    {% for emiten in emitens %}
+                    <option value="{{emiten.emiten_code}}">{{emiten.emiten_code}}</option>
+                    {% endfor %}
+                </select>
+                
+            </div>
+        </div>
+
+        <a href="{% url 'tbp-table2-list' %}" class="btn btn-primary my-2">Cancel</a>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+
+
+
+
+{% endblock %}

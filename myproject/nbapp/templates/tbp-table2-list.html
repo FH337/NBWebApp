@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} News Data {% endblock %}
+
+{% block content %}
+
+<div>
+    <a href="{% url 'home' %}" class="btn btn-primary my-2">Back to Home</a>
+    <a href="{% url 'emiten-list' %}" class="btn btn-primary my-2">Go To Emiten List</a>
+    <a href="{% url 'test' %}" class="btn btn-primary my-2">Go To Test Site</a>
+    <h2 align="center">News Data List</h2>
+</div>
+<div class="mb-3">
+    <select id="emiten-list-select">
+        <option value=""></option>
+        {% for emiten in emiten_list %}
+        <option value="{{emiten.emiten_code}}">{{emiten.emiten_code}}</option>
+        {% endfor %}
+    </select>
+</div>
+
+<div>
+    <table id="tbp-table2-datatable" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">News</th>
+                <th scope="col">Breakdown</th>
+                <th scope="col">Source</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for tbp_table2 in tbp_table2_list %}
+            <tr>
+                <td>
+                    <div>
+                        <h4>{{tbp_table2.title}}</h4>
+                        <p>{{tbp_table2.date}}</p>
+                        <p>{{tbp_table2.paragraph|slice:":400"}}<span id="dots{{tbp_table2.id}}">...</span><span
+                                id="more{{tbp_table2.id}}"
+                                style="display: none;">{{tbp_table2.paragraph|slice:"400:"}}</span><button
+                                onclick="moreless('dots{{tbp_table2.id}}', 'more{{tbp_table2.id}}', 'buttonid{{tbp_table2.id}}')"
+                                id="buttonid{{tbp_table2.id}}">read more</button></p>
+                    </div>
+                </td>
+
+                <td><a href="{% url 'tbp-table2-breakdown' id=tbp_table2.id %}"
+                        class="btn btn-primary my-2">Breakdown</a></td>
+                <td><a href={{tbp_table2.source}} class="btn btn-primary my-2">Go To Source</a></td>
+            </tr>
+                {% endfor %}
+            
+        </tbody>
+        
+    </table>
+
+</div>
+
+
+
+{% endblock %}

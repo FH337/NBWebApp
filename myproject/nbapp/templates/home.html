@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<center>
+<div class="container">
+  <h1 class="jumbotron-heading">NB Site</h1>
+  <h4>Prototype Site for Classification Interface.</h4>
+  <p>
+    <a href="{% url 'tbp-table2-list' %}" class="btn btn-primary my-2">News Data List</a>
+    <a href="{% url 'test' %}" class="btn btn-primary my-2">Test Site</a>
+  </p>
+</div>
+</center>
+{% endblock %}

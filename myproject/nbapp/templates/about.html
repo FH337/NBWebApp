@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} About {% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1 class="jumbotron-heading">About</h1>
+  <p>
+Investasi mempunyai pengertian sebagai suatu keputusan (commitment) yang diambil oleh manajemen untuk mengalokasikan sumber daya perusahaan yang didasarkan atas pertimbangan yang sejalan dengan sasaran jangka panjang (kebijakan manajemen) dengan tujuan memaksimalkan nilai atau kekayaan perusahaan dimasa mendatang (Wisnubroto dan Suyanto, 2019 ).
+  </p>
+  <p>
+Banyak cara yang digunakan untuk dapat menginvestasikan harta kita, salah satunya cara adalah dengan berinvestasi di saham. Secara sederhana saham dapat diartikan sebagai alat kepemilikan seseorang atau badan dalam suatu perusahaan yang berwujud selembar kertas yang menerangkan bahwa pemilik kertas tersebut adalah pemilik perusahaan yang menerbitkan kertas tersebut. Setiap perusahaan yang menerbitkan kertas berharga tersebut dengan tujuan mendapatkan modal atau dana tambahan disebut emiten. Harga saham setiap emiten pun mengalami pergerakan naik turun yang disebabkan berbagai faktor yang menyebabkan investor kesulitan untuk membeli saham  sesuai untuk kebutuhan investasi mereka.
+  </p>
+  <p>
+    Terdapat beberapa penelitian sebelumnya yang menggunakan metode
+    Naive Bayes sebagai classifier salah satunya yaitu penelitian Analisis Sentimen
+    Terhadap Pemerintahan Joko Widodo Pada Media Sosial Twitter Menggunakan
+    Algoritma Naives Bayes Classifier (Mahardhika & Zuliarso, 2018). Penulis
+    menerapkan algoritma untuk mendeteksi sentimen dengan tahapan analisis data
+    untuk penentuan rasio data latih dan data test. Data preprocessing meliputi case
+    folding, normalisasi fitur, tokenizing dan stopword removal dengan klasifikasi
+    menggunakan Naive Bayes Classifier dan menghasilkan output.
+  </p>
+  <center>
+      <a href="{% url 'home' %}" class="btn btn-primary my-2">Back to Home</a>
+  </center>
+</div>
+
+{% endblock %}

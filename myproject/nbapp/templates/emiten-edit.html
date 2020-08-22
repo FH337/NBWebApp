@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Emiten Edit {% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2>Emiten Update</h2>
+    <form method="POST" class="post-form" action="/emiten-updated/{{emiten.id}}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Emiten Code</label>
+            <input class="form-control"  type="text" name="emiten_code" id="id_emiten_code" value="{{emiten.emiten_code}}">
+        </div>
+        <div class="form-group">
+            <label>Emiten Name</label>
+            <input class="form-control"  type="text" name="emiten_name" id="id_emiten_name" value="{{emiten.emiten_name}}">
+        </div>
+        <a href="{% url 'emiten-list' %}" class="btn btn-primary my-2">Cancel</a>
+        <button type="submit" class="btn btn-success">Update</button>
+    </form>
+    
+
+</div>
+
+
+{% endblock %}

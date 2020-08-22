@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Emiten {% endblock %}
+
+{% block content %}
+
+
+<div>
+    <a href="{% url 'tbp-table2-list' %}" class="btn btn-primary my-2">Back to News Data List</a>
+    
+    <h2 align="center">Emiten List</h2>
+</div>
+<div>
+    <form method="get">
+        {{ emiten_filter.form.as_p }}
+        <button class="btn btn-primary my-2" type="submit">Search</button>
+    </form>
+    
+</div>
+<div class="pagination">
+    <span class="step-links">
+
+        {% if emiten_filter_qs.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ emiten_filter_qs.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ emiten_filter_qs.number }} of {{ emiten_filter_qs.paginator.num_pages }} pages
+        </span>
+
+        {% if emiten_filter_qs.has_next %}
+        <a href="?page={{ emiten_filter_qs.next_page_number }}">next</a>
+        <a href="?page={{ emiten_filter_qs.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+    
+</div>
+<div>
+    
+    <table class="table" id="emitenTable">
+        <thead>
+            <tr>
+                <th scope="col">Emiten Code</th>
+                <th scope="col">Emiten Name</th>
+                <th scope="col" colspan="2">Action</th>
+            </tr>
+        </thead>
+        {% for emiten in emiten_filter_qs %}
+        <tbody>
+            <tr>
+                <td><a href="{% url 'emiten-detail' id=emiten.id %}">{{emiten.emiten_code}}</a></td>
+                <td>{{emiten.emiten_name}}</td>
+                <td><a href="{% url 'emiten-edit' id=emiten.id %}" class="btn btn-primary my-2">Update</a></td>
+                <td><a href="{% url 'emiten-delete' id=emiten.id %}" class="btn btn-primary my-2">Delete</a></td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    <a href="{% url 'emiten-add' %}" class="btn btn-primary my-2">Add New Emiten</a>
+</div>
+{% endblock %}

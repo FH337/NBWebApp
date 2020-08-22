@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Emiten Detail Updated {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Emiten Updated</h2>
+    <p>Emiten Name: {{emiten.emiten_code}}</p>
+    <p>Emiten Code: {{emiten.emiten_name}}</p>
+    <a href="{% url 'emiten-list' %}" class="btn btn-primary my-2">Back to Emiten List</a>
+</div>
+
+
+{% endblock %}

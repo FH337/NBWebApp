@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Test {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <a href="{% url 'home' %}" class="btn btn-primary my-2">Back to Home</a>
+    <h2>Test Site</h2>
+    <form method="POST" action="/test/">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="comment">Test Data:</label>
+            <textarea class="form-control" rows="7" id="rawdata" name="rawdata">{{testdata}}</textarea>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="10" {{checked1}}>
+            <label class="form-check-label" for="inlineRadio1">10 %</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="25" {{checked2}}>
+            <label class="form-check-label" for="inlineRadio2">25 %</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="50" {{checked3}}>
+            <label class="form-check-label" for="inlineRadio3">50 %</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="100" {{checked4}}>
+            <label class="form-check-label" for="inlineRadio4">100 %</label>
+        </div>
+        
+        <div>
+            <button type="submit" class="btn btn-primary my-2">Generate Test</button>
+            <a href="{% url 'test' %}" class="btn btn-primary my-2">Clear</a>
+        </div>
+    </form>
+   
+    <div class="form-group">
+        <label for="comment">Data Train Negatif:</label>
+        <textarea class="form-control" rows="5" id="df_0" name="df_0">{{df_0}}</textarea>
+        <label for="comment">Data Train Positif:</label>
+        <textarea class="form-control" rows="5" id="df_1copy" name="df_1copy">{{df_1copy}}</textarea>
+        <label for="comment">df0:</label>
+        <textarea class="form-control" rows="5" id="df0" name="df0">{{df0}}</textarea>
+        <label for="comment">df1:</label>
+        <textarea class="form-control" rows="5" id="df1" name="df1">{{df1}}</textarea>
+        <label for="comment">TF0:</label>
+        <textarea class="form-control" rows="5" id="TF0" name="TF0">{{TF0}}</textarea>
+        <label for="comment">TF1:</label>
+        <textarea class="form-control" rows="5" id="TF1" name="TF1">{{TF1}}</textarea>
+        <label for="comment">IDF0:</label>
+        <textarea class="form-control" rows="5" id="IDF0" name="IDF0">{{IDF0}}</textarea>
+        <label for="comment">IDF1:</label>
+        <textarea class="form-control" rows="5" id="IDF1" name="IDF1">{{IDF1}}</textarea>
+        <label for="comment">TFIDF0:</label>
+        <textarea class="form-control" rows="5" id="TFIDF0" name="TFIDF0">{{TFIDF0}}</textarea>
+        <label for="comment">TFIDF1:</label>
+        <textarea class="form-control" rows="5" id="TFIDF1" name="TFIDF1">{{TFIDF1}}</textarea>
+        <label for="comment">percentTFIDF0:</label>
+        <textarea class="form-control" rows="5" id="percentTFIDF0" name="percentTFIDF0">{{percentTFIDF0}}</textarea>
+        <label for="comment">percentTFIDF1:</label>
+        <textarea class="form-control" rows="5" id="percentTFIDF1" name="percentTFIDF1">{{percentTFIDF1}}</textarea>
+        <p>PriorPOS: {{PriorPOS}}</p>
+        <p>PriorNEG: {{PriorNEG}}</p>
+        </div>
+    
+    <h4>Result:</h4>
+    <p>Persentase Positive: {{percentagePOS}}</p>
+    <p>Persentase Negative: {{percentageNEG}}</p>
+    <table class="table" id="tb_sentences">
+        <thead>
+            <tr>
+                <th scope="col">Sentence</th>
+                <th scope="col">Label</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for key,value in outputs.items %}
+        
+            <tr>
+                <td>{{key}}</td>
+                <td>{{value}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+   
+
+</div>
+
+{% endblock %}
